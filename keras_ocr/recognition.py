@@ -22,6 +22,7 @@ DEFAULT_BUILD_PARAMS = {
 }
 
 DEFAULT_ALPHABET = string.digits + string.ascii_lowercase
+EXTENDED_ALPHABET = string.digits + string.ascii_letters + string.punctuation
 
 PRETRAINED_WEIGHTS = {
     'kurapan': {
@@ -315,7 +316,7 @@ class Recognizer:
             alphabet = alphabet or PRETRAINED_WEIGHTS[weights]['alphabet']
         build_params = build_params or DEFAULT_BUILD_PARAMS
         if alphabet is None:
-            alphabet = DEFAULT_ALPHABET
+            alphabet = EXTENDED_ALPHABET
         self.alphabet = alphabet
         self.blank_label_idx = len(alphabet)
         self.backbone, self.model, self.training_model, self.prediction_model = build_model(
